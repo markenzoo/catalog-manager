@@ -199,8 +199,6 @@ class CatalogFormFilter extends CatalogController
             $this->CatalogAjaxController->sendJsonData();
         }
 
-        $objFormTemplate = new \Contao\FrontendTemplate('form_default');
-        $objFormTemplate->setData($arrFormData); // wenn du ein Array hast
         return $objFormTemplate->parse();
     }
 
