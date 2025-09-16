@@ -641,7 +641,10 @@ class CatalogView extends CatalogController
 
                 $objResponseContext = System::getContainer()->get('contao.routing.response_context_accessor')->getResponseContext();
                 $objHeadBag = $objResponseContext->get(HtmlHeadBag::class);
-
+                
+                $strMetaTitle = "";
+                $strMetaDescription = "";
+                
                 //$strMetaTitle = \strip_tags($arrCatalog[$this->catalogSEOTitle ?? '']);
                 if (!empty($this->catalogSEOTitle) && isset($arrCatalog[$this->catalogSEOTitle])) {
                     $strMetaTitle = \strip_tags($arrCatalog[$this->catalogSEOTitle]);
