@@ -34,18 +34,23 @@ class DoctrineSchemaListener
 
             foreach ($arrFields as $strIndex => $arrField) {
 
-                $strField = $arrField['name'];
+                $strField = $arrField['name'] ?? '';
+
+                if ($strField === '') {
+                    continue;
+                }
 
                 if (in_array($strIndex, ['PRIMARY', 'alias'])) {
                     continue;
                 }
 
-                $default = $arrField['default'];
+                $default = $arrField['default'] ?? null;
                 $unsigned = ($arrField['attributes'] ?? '') == 'unsigned';
                 $notnull = ($arrField['null'] ?? '') == 'NOT NULL';
                 $autoincrement = ($arrField['extra'] ?? '') == 'auto_increment';
 
-                $origin_type = strtok(strtolower($arrField['origtype']), '(), ');
+                $originTypeRaw = (string) ($arrField['origtype'] ?? 'varchar(255)');
+                $origin_type = strtok(strtolower($originTypeRaw), '(), ');
                 $connection = $this->doctrine->getConnection();
 
                 try {
