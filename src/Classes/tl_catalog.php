@@ -378,7 +378,7 @@ class tl_catalog extends Backend
 
         foreach ($arrModules as $strName => $arrModule) {
 
-            $arrLabel = $GLOBALS['TL_LANG']['MOD'][$strName];
+            $arrLabel = $GLOBALS['TL_LANG']['MOD'][$strName] ?? null;
             $strModuleName = $strName;
 
             if ($arrLabel && is_array($arrLabel)) $strModuleName = $arrLabel[0];
